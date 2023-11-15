@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=Heebo:wght@100;200;300;400;500;600;700&display=swap');
+@import url('../decss/theme.css');
+@import url('../decss/reset.css');
+@import url('../decss/components.css');
+@import url('../decss/font.css');
+@import url('../decss/classes.css');
+@import url('../decss/components/button.css');
+@import url('../decss/components/link.css');
+@import url('../decss/components/input.css');
+
+
+:root {
+    --max-width: 1200px;
+
+    --app-bg: #151f32;
+    --app-bg-light: #19304e;
+    --color-bg-1: #253658;
+    --color-text: white;
+
+    --border-radius-2: 1rem;
+    --border-width: 2px;
+
+    --game-card-width: 250px;
+}
+
+body {
+    font-family: 'Heebo', sans-serif;
+    color: white;
+}
+
+.cool-highlight {
+    width: var(--game-card-width);
+    aspect-ratio: 1;
+    outline: calc(var(--game-card-width) / 2) solid #0009;
+    /*outline: calc(var(--game-card-width) / 2) solid var(--app-bg-light);*/
+    outline-offset: calc(var(--game-card-width) / -2);
+    cursor: pointer;
+    transition: .2s;
+}
+
+.cool-highlight:hover {
+    outline: 5px solid var(--color-primary);
+    outline-offset: var(--v-gap);
+}
+
+main {
+    margin-top: var(--v-gap-l);
+}
+
+button {
+    padding: var(--v-gap) calc(var(--h-gap) * 2);
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+label {
+    color: var(--color-text)
+}
+
+h3 {
+    color: var(--color-text);
+    font-size: 2rem;
+}

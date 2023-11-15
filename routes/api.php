@@ -16,6 +16,10 @@ use App\Http\Controllers\GameController;
 |
 */
 
+Route::get('/', function () {
+    return ['Laravel' => app()->version()];
+});
+
 Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
     return $request->user();
 });

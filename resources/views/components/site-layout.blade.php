@@ -5,8 +5,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{$title}}</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" sizes="any">
     <link rel="stylesheet" href=" ">
     @vite(['resources/js/app.js'])
+    @vite(['resources/css/app.css'])
 </head>
 
 <body class="">

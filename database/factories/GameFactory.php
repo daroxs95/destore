@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Game;
 use App\Models\Tag;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -21,6 +22,7 @@ class GameFactory extends Factory
         return [
             'title' => $this->faker->word, // Generates a random word
             'description' => $this->faker->sentence,
+            'creator_id' => User::all()->random()->id,
             'release_date' => $this->faker->date,
         ];
     }

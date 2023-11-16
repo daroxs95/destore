@@ -17,8 +17,9 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->date('release_date')->nullable();
             $table->timestamps();
+            $table->foreignId('creator_id');
+            $table->string('slug')->unique()->nullable();
             // images
-            // author
             // publisher
             // platforms
             // genres

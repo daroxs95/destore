@@ -41,5 +41,12 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
+        'is_creator' => 'boolean',
+        'is_admin' => 'boolean',
     ];
+
+    public function games()
+    {
+        return $this->hasMany(Game::class, 'creator_id');
+    }
 }

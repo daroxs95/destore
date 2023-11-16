@@ -6,25 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{$title}}</title>
     <link rel="icon" type="image/svg+xml" href="favicon.svg" sizes="any">
-    <link rel="stylesheet" href=" ">
     @vite(['resources/js/app.js'])
     @vite(['resources/css/app.css'])
 </head>
 
 <body class="">
 <header>
-    <nav class="f-ai-center">
-        <div class="nav-content hstack p-def f-jc-between">
-            <h2 class="app-name f-ai-center p-0">
-                <a href="/">
-                    Destore
-                </a>
-            </h2>
-            <div class="f-ai-center">
-                <button id="openModalButton" class="outline">Login</button>
-            </div>
-        </div>
-    </nav>
+    <x-navbar/>
 </header>
 
 {{$slot}}
@@ -69,9 +57,19 @@
         padding-bottom: var(--v-gap-l);
     }
 
+    .login-modal::backdrop {
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+    }
+
     .login-modal form {
         padding: 0 var(--v-gap);
         width: 300px;
+    }
+
+    .login-modal h3 {
+        color: var(--color-text);
+        font-size: 2rem;
     }
 
     #closeModalButton {

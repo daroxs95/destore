@@ -16,5 +16,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [GameController::class, 'indexUI'])->name('indexUI');
+Route::get('users', [UserController::class, 'index'])->name('users.index');
+Route::get('users/{id}', [UserController::class, 'show'])->name('users.show');
+Route::get('games', [GameController::class, 'indexUI'])->name('games.indexUI');
+Route::get('games/{game:slug}', [GameController::class, 'showUI'])->name('games.showUI');
 
 require __DIR__.'/auth.php';

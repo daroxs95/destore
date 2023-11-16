@@ -5,6 +5,9 @@
 
                 <li class="card cool-highlight">
                     <h2 class="">{{$game->title}}</h2>
+                    <a href="{{route('games.showUI', ['game' => $game])}}" class="">
+                        View more
+                    </a>
                 </li>
             @endforeach
         </ul>

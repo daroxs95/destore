@@ -16,7 +16,7 @@ class GameController extends Controller
         }])->get();
 
         if ($renderUI) {
-            return view('games-list', ['games' => $games]);
+            return view('games.index', ['games' => $games]);
         }
 
         return response()->json($games);
@@ -66,9 +66,18 @@ class GameController extends Controller
     }
 
     // Retrieve a specific game
-    public function show(Game $game)
+    public function show(Game $game, bool $renderUI = false)
     {
+        if ($renderUI) {
+            return view('games.show', ['game' => $game]);
+        }
+
         return response()->json($game);
+    }
+
+    public function showUI(Game $game)
+    {
+        return self::show($game, true);
     }
 
     // Update a game

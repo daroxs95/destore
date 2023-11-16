@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\GameController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,7 +15,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/', [GameController::class, 'indexUI'])->name('indexUI');
 
-Route::get('/', [\App\Http\Controllers\GameController::class, 'indexUI'])->name('indexUI');
-
-require __DIR__ . '/auth.php';
+require __DIR__.'/auth.php';

@@ -62,3 +62,17 @@ h3 {
     color: var(--color-text);
     font-size: 2rem;
 }
+
+.content {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: var(--max-width);
+}
+
+.card {
+    background-color: var(--app-bg-light);
+    box-shadow: none;
+    height: 350px;
+    border-radius: var(--border-radius-2);
+    border-width: 0;
+}

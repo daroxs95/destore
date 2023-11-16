@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Tag;
+use Illuminate\Http\Request;
 
 class TagController extends Controller
 {
@@ -11,6 +11,7 @@ class TagController extends Controller
     public function index()
     {
         $tags = Tag::all();
+
         return response()->json($tags);
     }
 
@@ -18,6 +19,7 @@ class TagController extends Controller
     public function store(Request $request)
     {
         $tag = Tag::create($request->all());
+
         return response()->json(['status' => 'Success', 'message' => 'Tag created', 'data' => $tag]);
     }
 
@@ -31,6 +33,7 @@ class TagController extends Controller
     public function update(Request $request, Tag $tag)
     {
         $tag->update($request->all());
+
         return response()->json(['status' => 'Success', 'message' => 'Tag updated']);
     }
 
@@ -38,6 +41,7 @@ class TagController extends Controller
     public function destroy(Tag $tag)
     {
         $tag->delete();
+
         return response()->json(['status' => 'Success', 'message' => 'Tag deleted']);
     }
 }

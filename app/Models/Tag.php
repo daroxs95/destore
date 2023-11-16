@@ -4,12 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Game;
 
 class Tag extends Model
 {
     use HasFactory;
+
     protected $table = 'tags';
+
     protected $fillable = ['name', 'description'];
 
     public static $rules = [

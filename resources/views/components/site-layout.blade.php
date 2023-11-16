@@ -26,11 +26,8 @@
         </div>
     </nav>
 </header>
-<main>
-    <div class="">
-        {{$slot}}
-    </div>
-</main>
+
+{{$slot}}
 
 <dialog class="card login-modal p-def" id="loginModal">
     <div class="f-jc-end">
@@ -64,22 +61,6 @@
         backdrop-filter: blur(5px);
         -webkit-backdrop-filter: blur(5px);
         position: fixed;
-    }
-
-    .nav-content {
-        width: 100%;
-        margin: auto;
-        max-width: var(--max-width);
-        height: var(--v-gap-l);
-    }
-
-    .app-name {
-        font-size: 30px;
-    }
-
-    .app-name a {
-        padding: 0;
-        color: var(--color-text);
     }
 
     .login-modal {

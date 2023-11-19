@@ -50,3 +50,6 @@ Start laravel dev server
 ```bash
 php artisan serve
 ```
+
+### TODO
+- [ ] Fix seeding errors due unique constraints.

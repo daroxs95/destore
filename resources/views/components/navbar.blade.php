@@ -16,6 +16,20 @@
                        class="button stealth">{{$item['label']}}</a>
                 @endif
             @endforeach
+            @auth
+                @if( auth()->user()->is_admin)
+                    @foreach($admin_menu_items as $item)
+                        @if(request()->routeIs($item['route']))
+                            <a href="{!! $item['url'] ?? route($item['route']) !!}"
+                               class="active button stealth"
+                               aria-current="page">{{$item['label']}}</a>
+                        @else
+                            <a href="{!! $item['url'] ?? route($item['route']) !!}"
+                               class="button stealth">{{$item['label']}}</a>
+                        @endif
+                    @endforeach
+                @endif
+            @endauth
         </div>
         <div class="f-ai-center">
             @guest

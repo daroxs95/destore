@@ -59,11 +59,11 @@
 
     .nav-content a.button {
         color: var(--color-primary);
+        font-size: 14px;
     }
 
     .nav-content a:hover {
         text-decoration: none;
-        font-size: 14px;
     }
 
     .nav-content a.active {

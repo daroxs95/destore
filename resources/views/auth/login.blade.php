@@ -11,6 +11,6 @@
     .login-page_login-card {
         margin: auto;
         height: fit-content;
-        padding-bottom: var(--v-gap-l);
+        padding-bottom: calc(var(--v-gap) * 2);
     }
 </style>

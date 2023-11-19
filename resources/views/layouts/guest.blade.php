@@ -13,8 +13,8 @@
 </head>
 
 <body class="">
-<main class="content p-def f-ai-center f-column">
-    <div class="m-def">
+<main class="content p-def f-ai-center f-column f-jc-center">
+    <div class="m-def p-def">
         <a href="/">
             <x-application-logo class=""/>
         </a>

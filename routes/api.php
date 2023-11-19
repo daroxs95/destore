@@ -26,3 +26,5 @@ Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
 
 Route::resource('tags', TagController::class);
 Route::resource('games', GameController::class);
+
+require __DIR__.'/api/auth.php';

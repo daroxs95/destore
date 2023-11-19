@@ -1,15 +1,13 @@
-<x-site-layout title="{{$user->name}}">
+<x-site-layout title="Destore | {{$user->name}}">
     <main class="content p-def">
 
         {{$user->email}}
         {{$user->created_at}}
 
         <h2 class="">Games by this creator</h2>
-        <ul class="">
+        <ul class="games-grid">
             @foreach($user->games as $game)
-                <li>
-                    <a href="{{route('games.showUI', ['game' => $game])}}">{{$game->title}}</a>
-                </li>
+                <x-game-card :game="$game" />
             @endforeach
         </ul>
     </main>

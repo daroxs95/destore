@@ -1,9 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <title>{{$title}}</title>
     <link rel="icon" type="image/svg+xml" href="favicon.svg" sizes="any">
     @vite(['resources/js/app.js'])
@@ -49,6 +51,7 @@
         backdrop-filter: blur(5px);
         -webkit-backdrop-filter: blur(5px);
         position: fixed;
+        z-index: 1000;
     }
 
     .login-modal {
@@ -60,16 +63,6 @@
     .login-modal::backdrop {
         backdrop-filter: blur(5px);
         -webkit-backdrop-filter: blur(5px);
-    }
-
-    .login-modal form {
-        padding: 0 var(--v-gap);
-        width: 300px;
-    }
-
-    .login-modal h3 {
-        color: var(--color-text);
-        font-size: 2rem;
     }
 
     #closeModalButton {

@@ -7,6 +7,7 @@
 @import url('../decss/components/button.css');
 @import url('../decss/components/link.css');
 @import url('../decss/components/input.css');
+@import url('../decss/components/classes/button.css');
 
 
 :root {
@@ -31,7 +32,7 @@ body {
 .cool-highlight {
     width: var(--game-card-width);
     aspect-ratio: 1;
-    outline: calc(var(--game-card-width) / 2) solid #0009;
+    outline: calc(var(--game-card-width) / 2) solid transparent;
     /*outline: calc(var(--game-card-width) / 2) solid var(--app-bg-light);*/
     outline-offset: calc(var(--game-card-width) / -2);
     cursor: pointer;
@@ -47,7 +48,7 @@ main {
     margin-top: var(--v-gap-l);
 }
 
-button {
+button, .button {
     padding: var(--v-gap) calc(var(--h-gap) * 2);
     text-transform: uppercase;
     font-weight: 600;
@@ -70,4 +71,13 @@ label {
     height: 350px;
     border-radius: var(--border-radius-2);
     border-width: 0;
+}
+
+.games-grid {
+    max-width: var(--max-width);
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(var(--game-card-width), 1fr));
+    grid-gap: 1rem;
+    padding: 1rem;
 }

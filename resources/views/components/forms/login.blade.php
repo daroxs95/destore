@@ -1,23 +1,45 @@
-<form class="vstack" method="POST" action="{{ route('login') }}">
+<form class="vstack login-form" method="POST" action="{{ route('login') }}">
     @csrf
 
     <h3>Login</h3>
     <div class="vstack">
-        <label for="email" class="">Email</label>
-        <input type="email" id="email" name="email" class="" required autofocus>
+        <label for="email" class="">{{__('Email')}}</label>
+        <input type="email" id="email" name="email" class="" required autofocus autocomplete>
+        <x-input-error :messages="$errors->get('email')" class=""/>
     </div>
 
     <div class="vstack">
-        <label for="password" class="">Password</label>
+        <label for="password" class="">{{__('Password')}}</label>
         <input type="password" id="password" name="password" class="" required>
+        <x-input-error :messages="$errors->get('password')" class=""/>
     </div>
 
     <div class="hstack f-ai-center">
         <input type="checkbox" id="remember" name="remember" class="center">
-        <label for="remember" class="">Remember me</label>
+        <label for="remember" class="">{{ __('Remember me') }}</label>
     </div>
 
+
+    @if (Route::has('password.request'))
+        <a class=""
+           href="{{ route('password.request') }}">
+            {{ __('Forgot your password?') }}
+        </a>
+    @endif
+
     <button type="submit" class="">
-        Log in
+        {{ __('Log in') }}
     </button>
 </form>
+
+<style>
+    .login-form {
+        padding: 0 var(--v-gap);
+        width: 300px;
+    }
+
+    .login-form h3 {
+        color: var(--color-text);
+        font-size: 2rem;
+    }
+</style>

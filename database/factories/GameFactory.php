@@ -8,7 +8,7 @@ use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Game>
+ * @extends Factory<Game>
  */
 class GameFactory extends Factory
 {
@@ -33,6 +33,16 @@ class GameFactory extends Factory
             $tagCount = rand(1, 5); // Adjust the range as needed
             $tags = Tag::inRandomOrder()->limit($tagCount)->get();
             $game->tags()->attach($tags);
+        });
+    }
+
+    public function configure()
+    {
+        return $this->afterCreating(function (Game $post) {
+            $url = 'https://source.unsplash.com/random/1200x800';
+            $post
+                ->addMediaFromUrl($url)
+                ->toMediaCollection();
         });
     }
 }

@@ -9,13 +9,15 @@
 
         <h1>{{$game->title}}</h1>
         <div class="">
-            Created by:
+            {{__("Created by")}}:
             <a class="" href="{{route('users.show', ['id' => $game->creator->id])}}">{{$game->creator->name}}</a>
         </div>
         <div>
-            Released in: {{$game->release_date->formatLocalized('%B %e, %Y')}}
+            {{__("Released in")}}: {{$game->release_date->formatLocalized('%B %e, %Y')}}
         </div>
+        <br />
         <img class="game-details-main-img" src="{{$game->media->first()->getUrl('normal')}}" alt="" />
+        <br />
         <p>
             {{$game->description}}
         </p>

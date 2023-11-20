@@ -7,7 +7,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{$title}}</title>
-    <link rel="icon" type="image/svg+xml" href="favicon.svg" sizes="any">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" sizes="any">
     @vite(['resources/js/app.js'])
     @vite(['resources/css/app.css'])
 </head>

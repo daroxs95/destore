@@ -32,14 +32,3 @@
     </button>
 </form>
 
-<style>
-    .login-form {
-        padding: 0 var(--v-gap);
-        width: 300px;
-    }
-
-    .login-form h3 {
-        color: var(--color-text);
-        font-size: 2rem;
-    }
-</style>

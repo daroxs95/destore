@@ -41,48 +41,10 @@
                     <p class="p-0">Welcome, {{ Auth::user()->name }}</p>
                     <form action="{{ route('logout') }}" method="POST">
                         @csrf
-                        <button type="submit">{{__("Logout")}}</button>
+                        <button class="pointer" type="submit">{{__("Logout")}}</button>
                     </form>
                 </div>
             @endauth
         </div>
     </div>
 </nav>
-
-<style>
-    .nav-content {
-        width: 100%;
-        margin: auto;
-        max-width: var(--max-width);
-        height: var(--v-gap-l);
-    }
-
-    .app-name {
-        font-size: 30px;
-        margin-right: var(--h-gap);
-    }
-
-    .app-name a {
-        padding-bottom: 0;
-    }
-
-    .nav-content a {
-        color: var(--color-text);
-        min-height: auto;
-    }
-
-    .nav-content a.button {
-        color: var(--color-primary);
-        font-size: 14px;
-    }
-
-    .nav-content a:hover {
-        text-decoration: none;
-    }
-
-    .nav-content a.active {
-        color: var(--color-primary);
-        font-weight: bold;
-    }
-</style>
-

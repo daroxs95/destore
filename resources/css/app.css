@@ -81,3 +81,104 @@ label {
     grid-gap: 1rem;
     padding: 1rem;
 }
+
+.game-tag {
+    padding: 0 var(--h-gap);
+    height: fit-content;
+    min-height: auto;
+    border-radius: var(--border-radius-2);
+}
+
+.game-card {
+    color: var(--color-text);
+    position: relative;
+}
+
+.game-card .tags-list {
+    max-height: 28px;
+    overflow: hidden;
+    transition: max-height 0.6s ease-in-out;
+}
+
+.game-card:hover .tags-list{
+    max-height: 150px;
+}
+
+.game-card a:hover {
+    text-decoration: none;
+}
+
+.game-image {
+    width: 100%;
+    height: calc(100% - 5px);
+    object-fit: cover;
+    border-radius: var(--border-radius-2);
+}
+
+.game-data {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    height: fit-content;
+    min-height: calc(var(--v-gap) * 10);
+    background-color: var(--app-bg-light);
+    border-radius: var(--border-radius-2);
+    transition: height 1s ease;
+}
+
+.game-card-anchor {
+    width: fit-content;
+    margin: auto;
+}
+
+.nav-content {
+    width: 100%;
+    margin: auto;
+    max-width: var(--max-width);
+    height: var(--v-gap-l);
+}
+
+.app-name {
+    font-size: 30px;
+    margin-right: var(--h-gap);
+}
+
+.app-name a {
+    padding-bottom: 0;
+}
+
+.nav-content a {
+    color: var(--color-text);
+    min-height: auto;
+}
+
+.nav-content a.button {
+    color: var(--color-primary);
+    font-size: 14px;
+}
+
+.nav-content a:hover {
+    text-decoration: none;
+}
+
+.nav-content a.active {
+    color: var(--color-primary);
+    font-weight: bold;
+}
+
+.login-form {
+    padding: 0 var(--v-gap);
+    width: 300px;
+}
+
+.login-form h3 {
+    color: var(--color-text);
+    font-size: 2rem;
+}
+
+.login-page_login-card {
+    margin: auto;
+    height: fit-content;
+    padding-bottom: calc(var(--v-gap) * 2);
+}

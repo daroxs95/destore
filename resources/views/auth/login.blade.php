@@ -6,11 +6,3 @@
         <x-forms.login/>
     </div>
 </x-guest-layout>
-
-<style>
-    .login-page_login-card {
-        margin: auto;
-        height: fit-content;
-        padding-bottom: calc(var(--v-gap) * 2);
-    }
-</style>

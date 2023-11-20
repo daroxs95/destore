@@ -13,7 +13,7 @@
             <a class="" href="{{route('users.show', ['id' => $game->creator->id])}}">{{$game->creator->name}}</a>
         </div>
         <div>
-            Released in: {{$game->release_date}}
+            Released in: {{$game->release_date->formatLocalized('%B %e, %Y')}}
         </div>
         <img class="game-details-main-img" src="{{$game->media->first()->getUrl('normal')}}" alt="" />
         <p>

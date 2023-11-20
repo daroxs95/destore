@@ -19,6 +19,10 @@ class Game extends Model implements HasMedia
 
     protected $fillable = ['title', 'description'];
 
+    protected $casts = [
+        'release_date' => 'datetime',
+    ];
+
     protected static function booted()
     {
         // TODO: this sometimes when seeding causes an UniqueConstraintViolationException

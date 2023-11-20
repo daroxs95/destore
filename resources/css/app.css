@@ -30,13 +30,8 @@ body {
 }
 
 .cool-highlight {
-    width: var(--game-card-width);
-    aspect-ratio: 1;
-    outline: calc(var(--game-card-width) / 2) solid transparent;
-    /*outline: calc(var(--game-card-width) / 2) solid var(--app-bg-light);*/
-    outline-offset: calc(var(--game-card-width) / -2);
     cursor: pointer;
-    transition: .2s;
+    transition: outline .2s ease-in-out, outline-offset .2s ease-in-out;
 }
 
 .cool-highlight:hover {
@@ -68,7 +63,6 @@ label {
 .card {
     background-color: var(--app-bg-light);
     box-shadow: none;
-    height: 350px;
     border-radius: var(--border-radius-2);
     border-width: 0;
 }
@@ -92,6 +86,8 @@ label {
 .game-card {
     color: var(--color-text);
     position: relative;
+    height: 350px;
+    width: var(--game-card-width);
 }
 
 .game-card .tags-list {
@@ -100,11 +96,15 @@ label {
     transition: max-height 0.6s ease-in-out;
 }
 
-.game-card:hover .tags-list{
+.game-card:hover .tags-list {
     max-height: 150px;
 }
 
 .game-card a:hover {
+    text-decoration: none;
+}
+
+a.user-card:hover {
     text-decoration: none;
 }
 
@@ -189,4 +189,16 @@ label {
     max-height: 600px;
     object-fit: cover;
     border-radius: var(--border-radius);
+}
+
+.hoverable:hover {
+    box-shadow: var(--card-bshadow);
+}
+
+.mt-def {
+    margin-top: var(--v-gap);
+}
+
+.mt-def-l {
+    margin-top: var(--v-gap-l);
 }

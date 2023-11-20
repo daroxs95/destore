@@ -1,14 +1,14 @@
 <x-site-layout title="Destore | Creators">
     <main class="content p-def">
-        <h2 class="">Creators list ({{$users->count()}})</h2>
-        <ul class="">
+        <h2 class="">({{$users->count()}}) {{__("Creators")}}</h2>
+        <ul class="hstack f-wrap">
             @foreach($users as $user)
-                <li class="">
-                    <a class="hstack" href="{{route('users.show', ['id' => $user->id])}}">
-                        <h3 class="">{{$user->name}}</h3>
+                <a class="card user-card p-def m-0 f-ai-center hoverable" href="{{route('users.show', ['id' => $user->id])}}">
+                    <li class="hstack p-0 m-0 f-ai-center">
+                        <h3 class="p-0 ">{{$user->name}}</h3>
                         <span>{{$user->games->count()}}</span>
-                    </a>
-                </li>
+                    </li>
+                </a>
             @endforeach
         </ul>
     </main>

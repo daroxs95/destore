@@ -1,11 +1,9 @@
 <x-site-layout title="{{$game->title}}">
 
     <main class="content p-def">
-        <ul class="hstack">
+        <ul class="hstack f-wrap">
             @foreach($game->tags as $tag)
-                <li>
-                    {{$tag->name}}
-                </li>
+                <x-game-tag :tag="$tag"/>
             @endforeach
         </ul>
 
@@ -13,7 +11,12 @@
             Created by: <a class="underline"
                            href="{{route('users.show', ['id' => $game->creator->id])}}">{{$game->creator->name}}</a>
         </div>
-        {{$game->published_at}}
-        {{$game->body}}
+        <div>
+            Released in: {{$game->release_date}}
+        </div>
+        <img src="" alt="" />
+        <p>
+            {{$game->description}}
+        </p>
     </main>
 </x-site-layout>

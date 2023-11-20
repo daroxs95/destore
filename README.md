@@ -37,6 +37,11 @@ Create a database and set the credentials in the .env file.
 php artisan migrate:fresh --seed
 ```
 
+Link the storage disks
+```bash
+php artisan storage:link
+```
+
 ## Running in dev mode
 
 Start vite dev server

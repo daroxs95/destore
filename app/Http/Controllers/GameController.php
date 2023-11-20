@@ -13,7 +13,7 @@ class GameController extends Controller
     {
         $games = Game::with(['tags' => function ($query) {
             $query->select('tags.id', 'tags.name', 'tags.description');
-        }])->get();
+        }, 'media'])->get();
 
         if ($renderUI) {
             return view('games.index', ['games' => $games]);

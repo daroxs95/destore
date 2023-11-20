@@ -7,14 +7,15 @@
             @endforeach
         </ul>
 
-        <div class="mb-2 font-semibold">
-            Created by: <a class="underline"
-                           href="{{route('users.show', ['id' => $game->creator->id])}}">{{$game->creator->name}}</a>
+        <h1>{{$game->title}}</h1>
+        <div class="">
+            Created by:
+            <a class="" href="{{route('users.show', ['id' => $game->creator->id])}}">{{$game->creator->name}}</a>
         </div>
         <div>
             Released in: {{$game->release_date}}
         </div>
-        <img src="" alt="" />
+        <img class="game-details-main-img" src="{{$game->media->first()->getUrl('normal')}}" alt="" />
         <p>
             {{$game->description}}
         </p>

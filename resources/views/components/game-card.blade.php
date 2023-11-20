@@ -1,6 +1,6 @@
 <a href="{{route('games.showUI', ['game' => $game])}}" class="game-card-anchor">
     <li class="card game-card cool-highlight">
-        <img class="game-image" src="https://dominique.surge.sh/hero_engine.jpeg" alt=""/>
+        <img class="game-image" src="{{$game->media->first()->getUrl('preview')}}" alt=""/>
         <div class="game-data p-def">
             <h2 class="">{{$game->title}}</h2>
             <div class="hstack f-wrap tags-list">

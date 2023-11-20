@@ -48,7 +48,7 @@ class Game extends Model implements HasMedia
     {
         $this
             ->addMediaConversion('normal')
-            ->fit(Manipulations::FIT_CROP, 1200, 1080)
+            ->fit(Manipulations::FIT_CROP, 1200, 800)
             ->nonQueued();
         $this
             ->addMediaConversion('preview')

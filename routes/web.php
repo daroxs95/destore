@@ -22,7 +22,7 @@ Route::get('users', [UserController::class, 'index'])
     ->middleware(['auth', 'is.admin']);
 Route::get('users/{id}', [UserController::class, 'show'])
     ->name('users.show')
-    ->middleware(['auth', 'is.admin']);
+    ->middleware(['auth']);
 Route::get('games', [GameController::class, 'indexUI'])
     ->name('games.indexUI');
 Route::get('games/{game:slug}', [GameController::class, 'showUI'])

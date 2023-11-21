@@ -1,7 +1,7 @@
 <form class="vstack login-form" method="POST" action="{{ route('login') }}">
     @csrf
 
-    <h3>Login</h3>
+    <h3>{{__("Login")}}</h3>
     <div class="vstack">
         <label for="email" class="">{{__('Email')}}</label>
         <input type="email" id="email" name="email" class="" required autofocus autocomplete>
@@ -30,5 +30,10 @@
     <button type="submit" class="">
         {{ __('Log in') }}
     </button>
+    <div class="f-jc-center">
+        <a class="button stealth" href="{{ route('register') }}">
+            {{ __('or register') }}
+        </a>
+    </div>
 </form>
 

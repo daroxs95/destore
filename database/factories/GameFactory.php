@@ -20,7 +20,7 @@ class GameFactory extends Factory
     public function definition(): array
     {
         return [
-            'title' => $this->faker->unique()->word, // Generates a random word
+            'title' => $this->faker->word, // Generates a random word
             'description' => $this->faker->sentence,
             'creator_id' => User::all()->random()->id,
             'release_date' => $this->faker->date,

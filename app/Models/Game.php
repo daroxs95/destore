@@ -27,7 +27,7 @@ class Game extends Model implements HasMedia
     {
         // TODO: this sometimes when seeding causes an UniqueConstraintViolationException
         static::creating(function ($game) {
-            $game->slug = $game->slug ?? Str::slug($game->title);
+            $game->slug = $game->slug ?? $game->createUniqueSlug();
         });
     }
 
@@ -46,6 +46,14 @@ class Game extends Model implements HasMedia
     public function creator()
     {
         return $this->belongsTo(User::class, 'creator_id');
+    }
+
+    public function createUniqueSlug()
+    {
+        $slug = Str::slug($this->title);
+        $slugsCount = Game::whereRaw("slug REGEXP '^{$slug}_[0-9]+$'")->orWhere('slug', $slug)->count();
+
+        return $slugsCount == 0 ? $slug : $slug.'_'.$slugsCount;
     }
 
     public function registerMediaConversions(Media $media = null): void

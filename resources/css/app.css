@@ -202,3 +202,7 @@ a.user-card:hover {
 .mt-def-l {
     margin-top: var(--v-gap-l);
 }
+
+.forgot-password-text {
+    text-align: justify;
+}

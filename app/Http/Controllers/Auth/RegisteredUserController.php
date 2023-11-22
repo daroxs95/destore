@@ -51,7 +51,9 @@ class RegisteredUserController extends Controller
         Auth::login($user);
 
         $admin = User::where('is_admin', true)->first();
-        $admin->notify(new UserCreation($user));
+        if ($admin) {
+            $admin->notify(new UserCreation($user));
+        }
 
         if ($this::API) {
             return response()->noContent();

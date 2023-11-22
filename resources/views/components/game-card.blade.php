@@ -1,4 +1,4 @@
-<a href="{{route('games.showUI', ['game' => $game])}}" class="game-card-anchor">
+<a href="{{route('games.show', ['game' => $game])}}" class="game-card-anchor">
     <li class="card game-card cool-highlight">
         <img class="game-image" src="{{$game->media->first()->getUrl('preview')}}" alt=""/>
         <div class="game-data p-def">

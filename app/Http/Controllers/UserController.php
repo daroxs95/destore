@@ -6,7 +6,7 @@ use App\Models\User;
 
 class UserController extends Controller
 {
-    public function index(bool $renderUI = false)
+    public function index()
     {
         $users = User::with(['games'])->get();
 

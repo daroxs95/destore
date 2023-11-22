@@ -1,7 +1,7 @@
 <?php
 
-use App\Http\Controllers\GameController;
-use App\Http\Controllers\TagController;
+use App\Http\Controllers\API\GameControllerAPI;
+use App\Http\Controllers\API\TagControllerAPI;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -24,7 +24,8 @@ Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::resource('tags', TagController::class);
-Route::resource('games', GameController::class);
+// Disabled APIs for now
+//Route::resource('tags', TagControllerAPI::class);
+//Route::resource('games', GameControllerAPI::class);
 
-require __DIR__.'/api/auth.php';
+//require __DIR__.'/api/auth.php';

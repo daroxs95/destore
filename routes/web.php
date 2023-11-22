@@ -15,17 +15,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [GameController::class, 'indexUI'])
-    ->name('indexUI');
+Route::get('/', [GameController::class, 'index'])
+    ->name('index');
 Route::get('users', [UserController::class, 'index'])
     ->name('users.index')
     ->middleware(['auth', 'is.admin']);
 Route::get('users/{id}', [UserController::class, 'show'])
     ->name('users.show')
     ->middleware(['auth']);
-Route::get('games', [GameController::class, 'indexUI'])
-    ->name('games.indexUI');
-Route::get('games/{game:slug}', [GameController::class, 'showUI'])
-    ->name('games.showUI');
+Route::get('games', [GameController::class, 'index'])
+    ->name('games.index');
+Route::get('games/{game:slug}', [GameController::class, 'show'])
+    ->name('games.show');
 
 require __DIR__.'/auth.php';

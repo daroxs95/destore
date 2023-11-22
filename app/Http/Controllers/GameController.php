@@ -8,23 +8,20 @@ use Illuminate\Http\Request;
 
 class GameController extends Controller
 {
+    const API = false;
+
     // Retrieve all games
-    public function index(bool $renderUI = false)
+    public function index()
     {
         $games = Game::with(['tags' => function ($query) {
             $query->select('tags.id', 'tags.name', 'tags.description');
         }, 'media'])->get();
 
-        if ($renderUI) {
-            return view('games.index', ['games' => $games]);
+        if ($this::API) {
+            return response()->json($games);
         }
 
-        return response()->json($games);
-    }
-
-    public function indexUI()
-    {
-        return self::index(true);
+        return view('games.index', ['games' => $games]);
     }
 
     // Create a new game
@@ -66,18 +63,13 @@ class GameController extends Controller
     }
 
     // Retrieve a specific game
-    public function show(Game $game, bool $renderUI = false)
+    public function show(Game $game)
     {
-        if ($renderUI) {
-            return view('games.show', ['game' => $game]);
+        if ($this::API) {
+            return response()->json($game);
         }
 
-        return response()->json($game);
-    }
-
-    public function showUI(Game $game)
-    {
-        return self::show($game, true);
+        return view('games.show', ['game' => $game]);
     }
 
     // Update a game

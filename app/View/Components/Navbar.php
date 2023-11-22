@@ -15,7 +15,7 @@ class Navbar extends Component
     public function __construct()
     {
         $this->menu_items = [
-            ['label' => 'Games', 'route' => 'games.indexUI', 'url' => null],
+            ['label' => 'Games', 'route' => 'games.index', 'url' => null],
         ];
 
         $this->admin_menu_items = [

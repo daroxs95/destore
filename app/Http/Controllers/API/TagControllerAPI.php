@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API;
 
+use App\Http\Controllers\Controller;
 use App\Models\Tag;
 use Illuminate\Http\Request;
 
-class TagController extends Controller
+class TagControllerAPI extends Controller
 {
     // Retrieve all tags
     public function index()

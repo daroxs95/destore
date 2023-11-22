@@ -8,7 +8,6 @@ use App\Notifications\UserCreation;
 use App\Notifications\WelcomeRegisteredUser;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -17,6 +16,8 @@ use Illuminate\View\View;
 
 class RegisteredUserController extends Controller
 {
+    const API = false;
+
     /**
      * Display the registration view.
      */
@@ -30,7 +31,7 @@ class RegisteredUserController extends Controller
      *
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function store(Request $request, bool $renderUI = false)
+    public function store(Request $request)
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
@@ -52,15 +53,10 @@ class RegisteredUserController extends Controller
         $admin = User::where('is_admin', true)->first();
         $admin->notify(new UserCreation($user));
 
-        if ($renderUI) {
-            return redirect(RouteServiceProvider::HOME);
+        if ($this::API) {
+            return response()->noContent();
         }
 
-        return response()->noContent();
-    }
-
-    public function storeUI(Request $request): RedirectResponse
-    {
-        return $this->store($request, true);
+        return redirect(RouteServiceProvider::HOME);
     }
 }

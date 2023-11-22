@@ -1,10 +1,10 @@
 <?php
 
 use App\Http\Controllers\API\Auth\AuthenticatedSessionControllerAPI;
+use App\Http\Controllers\API\Auth\NewPasswordControllerAPI;
+use App\Http\Controllers\API\Auth\PasswordResetLinkControllerAPI;
 use App\Http\Controllers\API\Auth\RegisteredUserControllerAPI;
 use App\Http\Controllers\Auth\EmailVerificationNotificationController;
-use App\Http\Controllers\Auth\NewPasswordController;
-use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\VerifyEmailController;
 use Illuminate\Support\Facades\Route;
 
@@ -16,11 +16,11 @@ Route::post('/login', [AuthenticatedSessionControllerAPI::class, 'store'])
     ->middleware('guest')
     ->name('api.login');
 
-Route::post('/forgot-password', [PasswordResetLinkController::class, 'store'])
+Route::post('/forgot-password', [PasswordResetLinkControllerAPI::class, 'store'])
     ->middleware('guest')
     ->name('api.password.email');
 
-Route::post('/reset-password', [NewPasswordController::class, 'store'])
+Route::post('/reset-password', [NewPasswordControllerAPI::class, 'store'])
     ->middleware('guest')
     ->name('api.password.store');
 

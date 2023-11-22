@@ -4,18 +4,19 @@ Videogame store for the masses.
 
 ## About Demo
 
-Destore is intended to leverage laravel framework to create a simple videogame store, with users, assets storage and comments. All functionality is available via web app and REST Api
+Destore is intended to leverage laravel framework to create a simple videogame store, with users, assets storage and
+comments. All functionality is available via web app and REST Api
 
 ## Requirements
 
 The project is built using:
 
--   [DECSS](https://github.com/daroxs95/decss) for quick styling with minimal footprint and full control
+- [DECSS](https://github.com/daroxs95/decss) for quick styling with minimal footprint and full control
 
 Tooling used for local development:
 
--   [Ray](https://myray.app) for sending debug info to a separate app (paid)
--   [Debugbar](https://github.com/barryvdh/laravel-debugbar) for displaying profiling data (free)
+- [Ray](https://myray.app) for sending debug info to a separate app (paid)
+- [Debugbar](https://github.com/barryvdh/laravel-debugbar) for displaying profiling data (free)
 
 ## Installation instructions
 
@@ -38,6 +39,7 @@ php artisan migrate:fresh --seed
 ```
 
 Link the storage disks
+
 ```bash
 php artisan storage:link
 ```
@@ -56,5 +58,15 @@ Start laravel dev server
 php artisan serve
 ```
 
+## Tests
+
+Make sure to have a sqlite driver and enabled `pdo_sqlite` php extension:
+
+```bash
+php artisan test
+```
+
 ### TODO
-- [ ] Fix seeding errors due unique constraints.
+
+- [x] Fix seeding errors due unique constraints.
+- [ ] Fix separated usage of auth for the REST API

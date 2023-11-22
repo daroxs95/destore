@@ -12,6 +12,6 @@ class GameSeeder extends Seeder
      */
     public function run(): void
     {
-        Game::factory()->count(20)->withRandomTags()->create();
+        Game::factory()->count(30)->withRandomTags()->create();
     }
 }

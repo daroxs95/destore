@@ -14,7 +14,9 @@
         "laravel/sanctum": "^3.3",
         "laravel/tinker": "^2.8",
         "spatie/laravel-medialibrary": "^10.15",
-        "spatie/laravel-ray": "^1.33"
+        "spatie/laravel-ray": "^1.33",
+        "symfony/http-client": "^6.3",
+        "symfony/postmark-mailer": "^6.3"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.9",

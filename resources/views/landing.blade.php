@@ -5,7 +5,7 @@
             <h2 class="">Top Commented Games</h2>
             <ul class="top-games-grid">
                 @foreach($topGames as $game)
-                    <x-game-card :game="$game"/>
+                    <x-game-card :game="$game" :big="true"/>
                 @endforeach
             </ul>
         </div>

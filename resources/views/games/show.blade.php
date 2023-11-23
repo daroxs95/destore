@@ -31,11 +31,33 @@
             @endif
         @endauth
         <br/>
-        <img class="game-details-main-img" src="{{$game->media->first()->getUrl('normal')}}" alt=""/>
+        @if($game != null and $game->media->first() != null)
+            <img class="game-details-main-img" src="{{$game->media->first()->getUrl('normal')}}" alt=""/>
+        @else
+            <img class="game-details-main-img" src="{{asset('no_image.jpg')}}" alt=""/>
+        @endif
         <br/>
         <p>
             {{$game->description}}
         </p>
+
+        <br/>
+        <br/>
+        <div class="f-ai-center f-jc-center">
+            @if( $game->download_url != null)
+                <a class="" target="_blank" referrerpolicy="no-referrer" href="{{$game->download_url}}">
+                    <button class="get-game-btn pointer">
+                        {{__("Get the game")}}
+                    </button>
+                </a>
+            @else
+                <button disabled class="get-game-btn">
+                    {{__("Game is not available yet")}}
+                </button>
+            @endif
+        </div>
+        <br/>
+        <br/>
 
         <h4>({{$game->comments->count()}}) {{__("Comments")}}</h4>
         <x-game-comments :comments="$game->comments" :game_id="$game->id"/>

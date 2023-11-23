@@ -18,7 +18,7 @@ class Game extends Model implements HasMedia
 
     protected $table = 'games';
 
-    protected $fillable = ['title', 'description', 'creator_id', 'release_date'];
+    protected $fillable = ['title', 'description', 'creator_id', 'release_date', 'download_url'];
 
     protected $casts = [
         'release_date' => 'datetime',

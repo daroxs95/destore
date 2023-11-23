@@ -1,4 +1,4 @@
-@props(['game'])
+@props(['game', 'tags' => []])
 <br/>
 
 <form
@@ -11,8 +11,28 @@
 >
     @csrf
 
+    <!-- Tags elements -->
     <div class="vstack">
-        <label for="title" class="text-xs font-semibold uppercase mb-1">{{__("Title")}}</label>
+        <label for="tagsSelect" class="">{{__("Tags")}}</label>
+        <select id="tagsSelect">
+            <option value="">Select an tag to add</option>
+            @foreach($tags as $tag)
+                <option value="{{$tag->id}}" title="{{$tag->description}}">{{$tag->name}} </option>
+            @endforeach
+        </select>
+        <!-- Hidden input to store selected options -->
+        <input type="hidden" id="selectedTags" name="selected_tags"
+               value="@foreach($game->tags as $tag){{$tag->id}} @endforeach">
+        <!-- Display added options -->
+        <div id="addedTags" class="hstack f-wrap">
+        </div>
+    </div>
+
+    <br/>
+    <br/>
+
+    <div class="vstack">
+        <label for="title" class="">{{__("Title")}}</label>
         <input id="title" type="text" name="title" value="{{$game != null ? $game->title : ""}}" placeholder="">
     </div>
 
@@ -34,7 +54,7 @@
 
     <br/>
 
-    @if($game != null )
+    @if($game != null and $game->media->first() != null)
         <img class="game-details-main-img" src="{{$game->media->first()->getUrl('normal')}}" alt=""/>
     @endif
     <label for="file">File</label>

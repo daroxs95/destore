@@ -117,6 +117,13 @@
         font-size: 1.5rem;
     }
 
+    .removeTagButton {
+        height: 20px;
+        width: 20px;
+        min-height: 20px;
+        font-size: 1.5rem;
+    }
+
     .common-modal {
         width: 300px;
         padding-bottom: var(--v-gap);

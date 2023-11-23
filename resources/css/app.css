@@ -248,3 +248,7 @@ textarea {
         transform: translateY(0);
     }
 }
+
+.gap-0 {
+    gap: 0;
+}

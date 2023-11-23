@@ -36,27 +36,7 @@ class GameController extends Controller
     // Create a new game
     public function store(Request $request)
     {
-        // Validate other fields (name, description, release_date, etc.)
-
-        // Extract tags from the request (assuming tags are sent as an array)
-        $tagsData = $request->input('tags', []);
-
         $current_user = $request->user();
-
-        // Create or find tags and associate them with the game
-        $tags = [];
-        foreach ($tagsData as $tagData) {
-            $tag = Tag::firstOrCreate([
-                'name' => $tagData['name'],
-            ]);
-
-            // If description is provided, update the tag's description
-            if (isset($tagData['description'])) {
-                $tag->update(['description' => $tagData['description']]);
-            }
-
-            $tags[] = $tag->id;
-        }
 
         // Create the game
         $game = Game::create([
@@ -64,11 +44,10 @@ class GameController extends Controller
             'description' => $request->input('description'),
             'release_date' => $request->input('released') != null ? now() : null,
             'creator_id' => $current_user->id,
-            // Other game fields
         ]);
 
         // Associate tags with the game
-        $game->tags()->attach($tags);
+        $game->tags()->attach($this->genTagsFromRequest($request));
 
         if ($request->hasFile('image')) {
             $game->addMediaFromRequest('image')->toMediaCollection();
@@ -86,7 +65,9 @@ class GameController extends Controller
 
     public function create()
     {
-        return view('games.manage', ['game' => null]);
+        $tags = Tag::all();
+
+        return view('games.manage', ['game' => null, 'tags' => $tags]);
     }
 
     // Retrieve a specific game
@@ -105,17 +86,24 @@ class GameController extends Controller
             return response()->json($game);
         }
 
-        return view('games.manage', ['game' => $game]);
+        $tags = Tag::all();
+
+        return view('games.manage', ['game' => $game, 'tags' => $tags]);
     }
 
     // Update a game
     public function update(Request $request, Game $game)
     {
+
+        // Associate tags with the game
         $game->update([
             'title' => $request->input('title'),
             'description' => $request->input('description'),
             'release_date' => $request->input('published') != null ? now() : null,
         ]);
+
+        $game->tags()->detach();
+        $game->tags()->attach($this->genTagsFromRequest($request));
 
         if ($request->hasFile('image')) {
             $game->clearMediaCollection();
@@ -145,5 +133,30 @@ class GameController extends Controller
 
         return redirect(RouteServiceProvider::HOME);
 
+    }
+
+    public function genTagsFromRequest(Request $request)
+    {
+        // Extract tags from the request (assuming tags are sent as an array)
+        $tagsData = $request->input('create_tags', []);
+        $selectedTagsString = $request->input('selected_tags', '');
+        $selectedTags = $selectedTagsString ? explode(' ', $selectedTagsString) : [];
+
+        // Create or find tags and associate them with the game
+        $tags = $selectedTags;
+        foreach ($tagsData as $tagData) {
+            $tag = Tag::firstOrCreate([
+                'name' => $tagData['name'],
+            ]);
+
+            // If description is provided, update the tag's description
+            if (isset($tagData['description'])) {
+                $tag->update(['description' => $tagData['description']]);
+            }
+
+            $tags[] = $tag->id;
+        }
+
+        return $tags;
     }
 }

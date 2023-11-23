@@ -231,3 +231,20 @@ textarea {
 .reply-comment-form-container form {
     width: 100%;
 }
+
+.slide-up {
+    overflow: hidden;
+    transform: translateY(1000%);
+    animation: 0.2s slide-up ease-out;
+    animation-delay: 1s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes slide-up {
+    from {
+        transform: translateY(1000%);
+    }
+    to {
+        transform: translateY(0);
+    }
+}

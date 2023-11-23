@@ -1,20 +1,6 @@
 @props(['game'])
 <br/>
 
-@if(session()->has('success_notification'))
-    <div class="card p-def">
-        {{ session()->get('success_notification') }}
-    </div>
-    <br/>
-@endif
-
-@if(session()->has('error_notification'))
-    <div class="card p-def">
-        {{ session()->get('error_notification') }}
-    </div>
-    <br/>
-@endif
-
 <form
     @if($game  != null)
         action="{{route('games.update', ['game' => $game])}}" method="post" enctype="multipart/form-data"

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink"
+     viewBox="0 0 500 500">
+    <g stroke-width="22" stroke="#ef2964" fill="none" stroke-linecap="round" stroke-linejoin="round"
+       stroke-dasharray="28 33"
+       transform="">
+        <polyline points="250,50 250,250 450,250" marker-end="url(#SvgjsMarker3091)"></polyline>
+    </g>
+    <defs>
+        <marker markerWidth="4" markerHeight="4" refX="2" refY="2" viewBox="0 0 4 4" orient="auto" id="SvgjsMarker3091">
+            <polygon points="0,4 0,0 4,2" fill="#ef2964"></polygon>
+        </marker>
+    </defs>
+</svg>

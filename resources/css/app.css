@@ -8,6 +8,7 @@
 @import url('../decss/components/link.css');
 @import url('../decss/components/input.css');
 @import url('../decss/components/classes/button.css');
+@import url('../decss/scrollbar.css');
 
 
 :root {
@@ -16,6 +17,7 @@
     --app-bg: #151f32;
     --app-bg-light: #19304e;
     --color-bg-1: #253658;
+    --color-bg-2: #254774;
     --color-text: white;
 
     --border-radius-2: 1rem;
@@ -205,4 +207,22 @@ a.user-card:hover {
 
 .forgot-password-text {
     text-align: justify;
+}
+
+.comments-container {
+    max-width: 500px;
+}
+
+.comment-card {
+    width: 100%;
+}
+
+.comments-container textarea {
+    width: 100%;
+    min-height: 100px;
+    flex: 1;
+}
+
+.reply-comment-form-container form {
+    width: 100%;
 }

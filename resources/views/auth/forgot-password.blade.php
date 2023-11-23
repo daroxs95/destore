@@ -19,7 +19,7 @@
 
             <div class="vstack">
                 <label for="email" class="">{{__('Email')}}</label>
-                <input id="email" class="" type="email" name="email" value="{{old('email')}}" required autofocus/>
+                <input id="email" class="" type="email" name="email" value="{{old('email')}}" required autofocus placeholder=""/>
                 <x-input-error :messages="$errors->get('email')" class="mt-2"/>
             </div>
 

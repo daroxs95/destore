@@ -13,9 +13,17 @@ class GameController extends Controller
     // Retrieve all games
     public function index()
     {
-        $games = Game::with(['tags' => function ($query) {
-            $query->select('tags.id', 'tags.name', 'tags.description');
-        }, 'media'])->get();
+        $games = Game::query()
+            ->with([
+                'creator',
+                'tags' => function ($query) {
+                    $query->select('tags.id', 'tags.name', 'tags.description');
+                },
+                'media',
+            ])
+            ->isReleased()
+            ->orderBy('release_date', 'desc')
+            ->get();
 
         if ($this::API) {
             return response()->json($games);

@@ -21,28 +21,40 @@
 
 <dialog class="card login-modal p-def" id="loginModal">
     <div class="f-jc-end">
-        <button class="stealth font-icon-button p-0 f-ai-center f-jc-center" id="closeModalButton">&times</button>
+        <button data-modal-close="loginModal"
+                class="closeModalButton stealth font-icon-button p-0 f-ai-center f-jc-center" id="closeModalButton">
+            &times
+        </button>
     </div>
     <x-forms.login/>
 </dialog>
 
 </body>
 
-<script>
-    const openModalButton = document.getElementById('openModalButton');
-    const closeModalButton = document.getElementById('closeModalButton');
-    const loginModal = document.getElementById('loginModal');
-
-    openModalButton.addEventListener('click', () => {
-        loginModal.showModal();
-    });
-
-    closeModalButton.addEventListener('click', () => {
-        loginModal.close();
-    });
-</script>
-
 <style>
+    body {
+        margin-bottom: var(--v-gap-l);
+        scrollbar-gutter: stable both-edges;
+    }
+
+    html {
+        overflow-y: scroll;
+    }
+
+    @supports (scrollbar-gutter: stable) {
+        html {
+            overflow-y: auto;
+            scrollbar-gutter: stable;
+        }
+    }
+
+    @supports (overflow-y: overlay) {
+        html {
+            overflow-y: overlay;
+            scrollbar-gutter: auto;
+        }
+    }
+
     header {
         width: 100%;
         top: 0;
@@ -58,6 +70,7 @@
         margin: auto;
         height: fit-content;
         padding-bottom: var(--v-gap-l);
+        color: var(--color-text);
     }
 
     .login-modal::backdrop {
@@ -65,11 +78,16 @@
         -webkit-backdrop-filter: blur(5px);
     }
 
-    #closeModalButton {
+    .closeModalButton {
         height: 40px;
         width: 40px;
         min-height: var(--v-gap);
         font-size: 1.5rem;
+    }
+
+    .common-modal {
+        width: 300px;
+        padding-bottom: var(--v-gap);
     }
 </style>
 

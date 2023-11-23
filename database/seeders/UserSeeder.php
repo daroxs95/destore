@@ -18,6 +18,7 @@ class UserSeeder extends Seeder
             'name' => 'Daro',
             'email' => 'daro@daro.com',
             'password' => Hash::make('password'),
+            'email_verified_at' => now(),
             'is_admin' => true,
         ]);
     }

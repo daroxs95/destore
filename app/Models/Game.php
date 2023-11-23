@@ -29,6 +29,11 @@ class Game extends Model implements HasMedia
         static::creating(function ($game) {
             $game->slug = $game->slug ?? $game->createUniqueSlug();
         });
+
+        static::deleting(function (Game $game) {
+            // Delete related comments
+            $game->comments()->delete();
+        });
     }
 
     public function getImageUrl($conversion)
@@ -43,6 +48,16 @@ class Game extends Model implements HasMedia
         return $this->belongsToMany(Tag::class);
     }
 
+    public function comments()
+    {
+        return $this->hasMany(GameComment::class);
+    }
+
+    public function allComments()
+    {
+        return $this->comments()->with('allComments');
+    }
+
     public function creator()
     {
         return $this->belongsTo(User::class, 'creator_id');
@@ -54,6 +69,11 @@ class Game extends Model implements HasMedia
         $slugsCount = Game::whereRaw("slug REGEXP '^{$slug}_[0-9]+$'")->orWhere('slug', $slug)->count();
 
         return $slugsCount == 0 ? $slug : $slug.'_'.$slugsCount;
+    }
+
+    public function scopeIsReleased($query)
+    {
+        return $query->whereNotNull('release_date');
     }
 
     public function registerMediaConversions(Media $media = null): void

@@ -25,5 +25,14 @@
                 @endforeach
             </ul>
         </div>
+
+        @auth
+            @if( auth()->user()->is_admin or auth()->user()->id == $user->id)
+                <div class="mt-def-l">
+                    <h3 class="">{{__("Danger zone")}}</h3>
+                    <x-profile :user="$user"/>
+                </div>
+            @endif
+        @endauth
     </main>
 </x-site-layout>

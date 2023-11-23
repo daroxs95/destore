@@ -13,13 +13,48 @@
             <a class="" href="{{route('users.show', ['id' => $game->creator->id])}}">{{$game->creator->name}}</a>
         </div>
         <div>
-            {{__("Released in")}}: {{$game->release_date->formatLocalized('%B %e, %Y')}}
+            @if($game->release_date == null)
+                {{__("Not released")}}
+            @else
+                {{__("Released in")}}: {{$game->release_date->formatLocalized('%B %e, %Y')}}
+            @endif
         </div>
-        <br />
-        <img class="game-details-main-img" src="{{$game->media->first()->getUrl('normal')}}" alt="" />
-        <br />
+        @auth
+            @if( auth()->user()->is_admin or auth()->user()->id ==  $game->creator->id)
+                <br/>
+                <a class="" href="{{route('games.manage', ['game' => $game])}}">
+                    <button class="pointer">
+                        {{__("Manage game")}}
+                    </button>
+                </a>
+                <br/>
+            @endif
+        @endauth
+        <br/>
+        <img class="game-details-main-img" src="{{$game->media->first()->getUrl('normal')}}" alt=""/>
+        <br/>
         <p>
             {{$game->description}}
         </p>
+
+        <h4>({{$game->comments->count()}}) {{__("Comments")}}</h4>
+        <x-game-comments :comments="$game->comments" :game_id="$game->id"/>
+        <hr/>
+        @auth
+            <br/>
+            <h4>{{__("Comment")}}</h4>
+            <form class="comments-container" method="post" action="{{ route('games.comments.store') }}">
+                @csrf
+                <div class="form-group">
+                    <textarea class="form-control" name="body"></textarea>
+                    <input type="hidden" name="game_id" value="{{ $game->id }}"/>
+                </div>
+                <div class="w-100">
+                    <button type="submit" class="btn btn-success">
+                        {{__("Add Comment")}}
+                    </button>
+                </div>
+            </form>
+        @endauth
     </main>
 </x-site-layout>

@@ -21,28 +21,72 @@
 
 <dialog class="card login-modal p-def" id="loginModal">
     <div class="f-jc-end">
-        <button class="stealth font-icon-button p-0 f-ai-center f-jc-center" id="closeModalButton">&times</button>
+        <button data-modal-close="loginModal"
+                class="closeModalButton stealth font-icon-button p-0 f-ai-center f-jc-center" id="closeModalButton">
+            &times
+        </button>
     </div>
     <x-forms.login/>
 </dialog>
 
+@auth
+    <div class="notifications-container vstack">
+        @if(session()->has('success_notification'))
+            <div class="card p-def notification-item slide-up">
+                <div class="f-jc-end">
+                    <button data-item-hide="notification"
+                            class="closeModalButton stealth font-icon-button p-0 f-ai-center f-jc-center">&times
+                    </button>
+                </div>
+                <p class="text-success">
+                    {{ session()->get('success_notification') }}
+                </p>
+            </div>
+            <br/>
+        @endif
+
+        @if(session()->has('error_notification'))
+            <div class="card p-def notification-item slide-up">
+                <div class="f-jc-end">
+                    <button data-item-hide="notification"
+                            class="closeModalButton stealth font-icon-button p-0 f-ai-center f-jc-center">&times
+                    </button>
+                </div>
+                <p class="text-error">
+                    {{ session()->get('error_notification') }}
+                </p>
+            </div>
+            <br/>
+        @endif
+    </div>
+@endauth
 </body>
 
-<script>
-    const openModalButton = document.getElementById('openModalButton');
-    const closeModalButton = document.getElementById('closeModalButton');
-    const loginModal = document.getElementById('loginModal');
-
-    openModalButton.addEventListener('click', () => {
-        loginModal.showModal();
-    });
-
-    closeModalButton.addEventListener('click', () => {
-        loginModal.close();
-    });
-</script>
-
 <style>
+    body {
+        margin-bottom: var(--v-gap-l);
+        scrollbar-gutter: stable both-edges;
+        position: relative;
+    }
+
+    html {
+        overflow-y: scroll;
+    }
+
+    @supports (scrollbar-gutter: stable) {
+        html {
+            overflow-y: auto;
+            scrollbar-gutter: stable;
+        }
+    }
+
+    @supports (overflow-y: overlay) {
+        html {
+            overflow-y: overlay;
+            scrollbar-gutter: auto;
+        }
+    }
+
     header {
         width: 100%;
         top: 0;
@@ -58,6 +102,7 @@
         margin: auto;
         height: fit-content;
         padding-bottom: var(--v-gap-l);
+        color: var(--color-text);
     }
 
     .login-modal::backdrop {
@@ -65,11 +110,41 @@
         -webkit-backdrop-filter: blur(5px);
     }
 
-    #closeModalButton {
+    .closeModalButton {
         height: 40px;
         width: 40px;
         min-height: var(--v-gap);
         font-size: 1.5rem;
+    }
+
+    .removeTagButton {
+        height: 20px;
+        width: 20px;
+        min-height: 20px;
+        font-size: 1.5rem;
+    }
+
+    .common-modal {
+        width: 300px;
+        padding-bottom: var(--v-gap);
+    }
+
+    .notifications-container {
+        position: fixed;
+        bottom: var(--v-gap);
+        right: 0;
+        width: 300px;
+        min-width: 300px;
+        min-height: 150px;
+        display: flex;
+        flex-direction: column;
+        justify-content: end;
+    }
+
+    .notification-item {
+        min-height: 100px;
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        padding: calc(var(--v-gap)) var(--h-gap);
     }
 </style>
 

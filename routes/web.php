@@ -32,7 +32,23 @@ Route::get('games', [GameController::class, 'index'])
 Route::get('games/{game:slug}', [GameController::class, 'show'])
     ->name('games.show');
 
-Route::post('games/comments', [GameCommentController::class, 'store'])
+Route::post('games', [GameController::class, 'store'])
+    ->middleware(['auth', 'verified'])
+    ->name('games.store');
+Route::post('games/{game:slug}', [GameController::class, 'update'])
+    ->middleware(['auth', 'verified'])
+    ->name('games.update');
+Route::post('games/{game:slug}/delete', [GameController::class, 'destroy'])
+    ->middleware(['auth', 'verified'])
+    ->name('games.destroy');
+
+Route::get('games/create/new', [GameController::class, 'create'])
+    ->middleware(['auth', 'verified'])
+    ->name('games.create');
+Route::get('games/{game:slug}/manage', [GameController::class, 'manage'])
+    ->name('games.manage');
+
+Route::post('games/comments/create', [GameCommentController::class, 'store'])
     ->middleware(['auth', 'verified'])
     ->name('games.comments.store');
 

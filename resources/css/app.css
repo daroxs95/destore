@@ -217,6 +217,11 @@ a.user-card:hover {
     width: 100%;
 }
 
+textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
 .comments-container textarea {
     width: 100%;
     min-height: 100px;
@@ -225,4 +230,31 @@ a.user-card:hover {
 
 .reply-comment-form-container form {
     width: 100%;
+}
+
+.slide-up {
+    overflow: hidden;
+    transform: translateY(1000%);
+    animation: 0.2s slide-up ease-out;
+    animation-delay: 1s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes slide-up {
+    from {
+        transform: translateY(1000%);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+
+.gap-0 {
+    gap: 0;
+}
+
+.comment-time {
+    font-size: 14px;
+    color: var(--color-text-shadow);
+    float: right;
 }

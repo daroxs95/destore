@@ -29,12 +29,44 @@
     <x-forms.login/>
 </dialog>
 
+@auth
+    <div class="notifications-container vstack">
+        @if(session()->has('success_notification'))
+            <div class="card p-def notification-item slide-up">
+                <div class="f-jc-end">
+                    <button data-item-hide="notification"
+                            class="closeModalButton stealth font-icon-button p-0 f-ai-center f-jc-center">&times
+                    </button>
+                </div>
+                <p class="text-success">
+                    {{ session()->get('success_notification') }}
+                </p>
+            </div>
+            <br/>
+        @endif
+
+        @if(session()->has('error_notification'))
+            <div class="card p-def notification-item slide-up">
+                <div class="f-jc-end">
+                    <button data-item-hide="notification"
+                            class="closeModalButton stealth font-icon-button p-0 f-ai-center f-jc-center">&times
+                    </button>
+                </div>
+                <p class="text-error">
+                    {{ session()->get('error_notification') }}
+                </p>
+            </div>
+            <br/>
+        @endif
+    </div>
+@endauth
 </body>
 
 <style>
     body {
         margin-bottom: var(--v-gap-l);
         scrollbar-gutter: stable both-edges;
+        position: relative;
     }
 
     html {
@@ -85,9 +117,34 @@
         font-size: 1.5rem;
     }
 
+    .removeTagButton {
+        height: 20px;
+        width: 20px;
+        min-height: 20px;
+        font-size: 1.5rem;
+    }
+
     .common-modal {
         width: 300px;
         padding-bottom: var(--v-gap);
+    }
+
+    .notifications-container {
+        position: fixed;
+        bottom: var(--v-gap);
+        right: 0;
+        width: 300px;
+        min-width: 300px;
+        min-height: 150px;
+        display: flex;
+        flex-direction: column;
+        justify-content: end;
+    }
+
+    .notification-item {
+        min-height: 100px;
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        padding: calc(var(--v-gap)) var(--h-gap);
     }
 </style>
 

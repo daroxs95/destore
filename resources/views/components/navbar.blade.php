@@ -53,6 +53,8 @@
                         <br/>
                         <a class="f-ai-center f-jc-center button stealth"
                            href="{{route('users.show', ['id' => Auth::user()->id])}}">{{__("View profile")}}</a>
+                        <a class="f-ai-center f-jc-center button stealth"
+                           href="{{route('games.create')}}">{{__("Release a game")}}</a>
                         <form class="f-ai-center v-stack" action="{{ route('logout') }}" method="POST">
                             @csrf
                             <button class="pointer w-100" type="submit">{{__("Logout")}}</button>

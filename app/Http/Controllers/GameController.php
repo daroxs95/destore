@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Game;
 use App\Models\Tag;
+use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 
 class GameController extends Controller
@@ -35,13 +36,114 @@ class GameController extends Controller
     // Create a new game
     public function store(Request $request)
     {
-        // Validate other fields (name, description, release_date, etc.)
+        $current_user = $request->user();
 
+        // Create the game
+        $game = Game::create([
+            'title' => $request->input('title'),
+            'description' => $request->input('description'),
+            'release_date' => $request->input('released') != null ? now() : null,
+            'creator_id' => $current_user->id,
+        ]);
+
+        // Associate tags with the game
+        $game->tags()->attach($this->genTagsFromRequest($request));
+
+        if ($request->hasFile('image')) {
+            $game->addMediaFromRequest('image')->toMediaCollection();
+        }
+
+        session()->flash('success_notification', "Game '{$game->title}' created.");
+
+        // Return a response (e.g., success message or redirect)
+        if ($request->expectsJson()) {
+            return response()->json($game, 201);
+        }
+
+        return redirect()->route('games.manage', $game);
+    }
+
+    public function create()
+    {
+        $tags = Tag::all();
+
+        return view('games.manage', ['game' => null, 'tags' => $tags]);
+    }
+
+    // Retrieve a specific game
+    public function show(Game $game)
+    {
+        if ($this::API) {
+            return response()->json($game);
+        }
+
+        return view('games.show', ['game' => $game]);
+    }
+
+    public function manage(Game $game)
+    {
+        if ($this::API) {
+            return response()->json($game);
+        }
+
+        $tags = Tag::all();
+
+        return view('games.manage', ['game' => $game, 'tags' => $tags]);
+    }
+
+    // Update a game
+    public function update(Request $request, Game $game)
+    {
+
+        // Associate tags with the game
+        $game->update([
+            'title' => $request->input('title'),
+            'description' => $request->input('description'),
+            'release_date' => $request->input('published') != null ? now() : null,
+        ]);
+
+        $game->tags()->detach();
+        $game->tags()->attach($this->genTagsFromRequest($request));
+
+        if ($request->hasFile('image')) {
+            $game->clearMediaCollection();
+            $game->addMediaFromRequest('image')->toMediaCollection();
+        }
+
+        session()->flash('success_notification', "Game '{$game->title}' updated.");
+
+        // Return a response (e.g., success message or redirect)
+        if ($request->expectsJson()) {
+            return response()->json($game);
+        }
+
+        return redirect()->route('games.manage', $game);
+    }
+
+    // Delete a game
+    public function destroy(Game $game)
+    {
+        $game->delete();
+
+        if ($this::API) {
+            return response()->json(null, 204);
+        }
+
+        session()->flash('success_notification', "Game '{$game->title}' deleted.");
+
+        return redirect(RouteServiceProvider::HOME);
+
+    }
+
+    public function genTagsFromRequest(Request $request)
+    {
         // Extract tags from the request (assuming tags are sent as an array)
-        $tagsData = $request->input('tags', []);
+        $tagsData = $request->input('create_tags', []);
+        $selectedTagsString = $request->input('selected_tags', '');
+        $selectedTags = $selectedTagsString ? explode(' ', $selectedTagsString) : [];
 
         // Create or find tags and associate them with the game
-        $tags = [];
+        $tags = $selectedTags;
         foreach ($tagsData as $tagData) {
             $tag = Tag::firstOrCreate([
                 'name' => $tagData['name'],
@@ -55,44 +157,6 @@ class GameController extends Controller
             $tags[] = $tag->id;
         }
 
-        // Create the game
-        $game = Game::create([
-            'title' => $request->input('title'),
-            'description' => $request->input('description'),
-            'release_date' => $request->input('release_date'),
-            // Other game fields
-        ]);
-
-        // Associate tags with the game
-        $game->tags()->attach($tags);
-
-        // Return a response (e.g., success message or redirect)
-        return response()->json($game, 201);
-    }
-
-    // Retrieve a specific game
-    public function show(Game $game)
-    {
-        if ($this::API) {
-            return response()->json($game);
-        }
-
-        return view('games.show', ['game' => $game]);
-    }
-
-    // Update a game
-    public function update(Request $request, Game $game)
-    {
-        $game->update($request->all());
-
-        return response()->json($game);
-    }
-
-    // Delete a game
-    public function destroy(Game $game)
-    {
-        $game->delete();
-
-        return response()->json(null, 204);
+        return $tags;
     }
 }

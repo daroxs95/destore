@@ -25,6 +25,10 @@
                 @endforeach
             </ul>
         </div>
+        @auth
+            <a class="f-ai-center f-jc-center button stealth"
+               href="{{route('games.create')}}">{{__("Release a game")}}</a>
+        @endauth
 
         @auth
             @if( auth()->user()->is_admin or auth()->user()->id == $user->id)

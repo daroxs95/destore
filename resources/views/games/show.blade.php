@@ -13,8 +13,23 @@
             <a class="" href="{{route('users.show', ['id' => $game->creator->id])}}">{{$game->creator->name}}</a>
         </div>
         <div>
-            {{__("Released in")}}: {{$game->release_date->formatLocalized('%B %e, %Y')}}
+            @if($game->release_date == null)
+                {{__("Not released")}}
+            @else
+                {{__("Released in")}}: {{$game->release_date->formatLocalized('%B %e, %Y')}}
+            @endif
         </div>
+        @auth
+            @if( auth()->user()->is_admin or auth()->user()->id ==  $game->creator->id)
+                <br/>
+                <a class="" href="{{route('games.manage', ['game' => $game])}}">
+                    <button class="pointer">
+                        {{__("Manage game")}}
+                    </button>
+                </a>
+                <br/>
+            @endif
+        @endauth
         <br/>
         <img class="game-details-main-img" src="{{$game->media->first()->getUrl('normal')}}" alt=""/>
         <br/>

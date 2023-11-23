@@ -217,6 +217,11 @@ a.user-card:hover {
     width: 100%;
 }
 
+textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
 .comments-container textarea {
     width: 100%;
     min-height: 100px;

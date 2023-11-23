@@ -40,6 +40,8 @@ class GameController extends Controller
         // Extract tags from the request (assuming tags are sent as an array)
         $tagsData = $request->input('tags', []);
 
+        $current_user = $request->user();
+
         // Create or find tags and associate them with the game
         $tags = [];
         foreach ($tagsData as $tagData) {
@@ -59,15 +61,31 @@ class GameController extends Controller
         $game = Game::create([
             'title' => $request->input('title'),
             'description' => $request->input('description'),
-            'release_date' => $request->input('release_date'),
+            'release_date' => $request->input('released') != null ? now() : null,
+            'creator_id' => $current_user->id,
             // Other game fields
         ]);
 
         // Associate tags with the game
         $game->tags()->attach($tags);
 
+        if ($request->hasFile('image')) {
+            $game->addMediaFromRequest('image')->toMediaCollection();
+        }
+
+        session()->flash('success_notification', "Game '{$game->title}' created.");
+
         // Return a response (e.g., success message or redirect)
-        return response()->json($game, 201);
+        if ($request->expectsJson()) {
+            return response()->json($game, 201);
+        }
+
+        return redirect()->route('games.manage', $game);
+    }
+
+    public function create()
+    {
+        return view('games.manage', ['game' => null]);
     }
 
     // Retrieve a specific game
@@ -80,12 +98,36 @@ class GameController extends Controller
         return view('games.show', ['game' => $game]);
     }
 
+    public function manage(Game $game)
+    {
+        if ($this::API) {
+            return response()->json($game);
+        }
+
+        return view('games.manage', ['game' => $game]);
+    }
+
     // Update a game
     public function update(Request $request, Game $game)
     {
-        $game->update($request->all());
+        $game->update([
+            'title' => $request->input('title'),
+            'description' => $request->input('description'),
+            'release_date' => $request->input('published') != null ? now() : null,
+        ]);
 
-        return response()->json($game);
+        if ($request->hasFile('image')) {
+            $game->addMediaFromRequest('image')->toMediaCollection();
+        }
+
+        session()->flash('success_notification', "Game '{$game->title}' updated.");
+
+        // Return a response (e.g., success message or redirect)
+        if ($request->expectsJson()) {
+            return response()->json($game);
+        }
+
+        return redirect()->route('games.manage', $game);
     }
 
     // Delete a game

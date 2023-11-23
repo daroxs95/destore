@@ -50,4 +50,12 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasMany(Game::class, 'creator_id');
     }
+
+    protected static function booted()
+    {
+        static::deleting(function (User $user) {
+            // Delete related games
+            $user->games()->delete();
+        });
+    }
 }

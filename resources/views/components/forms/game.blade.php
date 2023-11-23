@@ -1,4 +1,5 @@
 @props(['game'])
+<br/>
 
 @if(session()->has('success_notification'))
     <div class="card p-def">

@@ -117,6 +117,7 @@ class GameController extends Controller
         ]);
 
         if ($request->hasFile('image')) {
+            $game->clearMediaCollection();
             $game->addMediaFromRequest('image')->toMediaCollection();
         }
 

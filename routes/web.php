@@ -48,7 +48,7 @@ Route::get('games/create/new', [GameController::class, 'create'])
 Route::get('games/{game:slug}/manage', [GameController::class, 'manage'])
     ->name('games.manage');
 
-Route::post('games/comments', [GameCommentController::class, 'store'])
+Route::post('games/comments/create', [GameCommentController::class, 'store'])
     ->middleware(['auth', 'verified'])
     ->name('games.comments.store');
 

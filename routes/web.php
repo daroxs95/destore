@@ -21,8 +21,8 @@ Route::get('users', [UserController::class, 'index'])
     ->name('users.index')
     ->middleware(['auth', 'is.admin']);
 Route::get('users/{id}', [UserController::class, 'show'])
-    ->name('users.show')
-    ->middleware(['auth']);
+    ->middleware(['auth', 'verified'])
+    ->name('users.show');
 Route::get('games', [GameController::class, 'index'])
     ->name('games.index');
 Route::get('games/{game:slug}', [GameController::class, 'show'])

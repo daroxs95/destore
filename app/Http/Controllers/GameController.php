@@ -44,6 +44,7 @@ class GameController extends Controller
             'description' => $request->input('description'),
             'release_date' => $request->input('released') != null ? now() : null,
             'creator_id' => $current_user->id,
+            'download_url' => $request->input('download_url'),
         ]);
 
         // Associate tags with the game
@@ -100,6 +101,7 @@ class GameController extends Controller
             'title' => $request->input('title'),
             'description' => $request->input('description'),
             'release_date' => $request->input('published') != null ? now() : null,
+            'download_url' => $request->input('download_url'),
         ]);
 
         $game->tags()->detach();

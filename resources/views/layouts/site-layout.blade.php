@@ -132,7 +132,7 @@
     .notifications-container {
         position: fixed;
         bottom: var(--v-gap);
-        right: 0;
+        right: var(--h-gap);
         width: 300px;
         min-width: 300px;
         min-height: 150px;

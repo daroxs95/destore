@@ -11,12 +11,15 @@ class GameCard extends Component
 {
     public Game $game;
 
+    public bool $big;
+
     /**
      * Create a new component instance.
      */
-    public function __construct(Game $game = null)
+    public function __construct(Game $game = null, bool $big = false)
     {
         $this->game = $game;
+        $this->big = $big;
     }
 
     /**

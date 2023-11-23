@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
 use Spatie\Image\Manipulations;
 use Spatie\MediaLibrary\HasMedia;
@@ -17,7 +18,7 @@ class Game extends Model implements HasMedia
 
     protected $table = 'games';
 
-    protected $fillable = ['title', 'description', 'creator_id', 'release_date'];
+    protected $fillable = ['title', 'description', 'creator_id', 'release_date', 'download_url'];
 
     protected $casts = [
         'release_date' => 'datetime',
@@ -33,6 +34,10 @@ class Game extends Model implements HasMedia
         static::deleting(function (Game $game) {
             // Delete related comments
             $game->comments()->delete();
+        });
+
+        static::updated(function ($game) {
+            Cache::forget('landing.topGames');
         });
     }
 

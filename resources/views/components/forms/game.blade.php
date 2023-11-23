@@ -39,6 +39,14 @@
     <br/>
 
     <div class="vstack">
+        <label for="download_url" class="">{{__("Download Url")}}</label>
+        <input id="download_url" type="text" name="download_url" value="{{$game != null ? $game->download_url : ""}}"
+               placeholder="">
+    </div>
+
+    <br/>
+
+    <div class="vstack">
         <label for="description" class="text-xs font-semibold uppercase mb-1">{{__("Description")}}</label>
         <textarea id="description" name="description"
                   placeholder="">{{$game != null ? $game->description : ""}}</textarea>
@@ -56,6 +64,8 @@
 
     @if($game != null and $game->media->first() != null)
         <img class="game-details-main-img" src="{{$game->media->first()->getUrl('normal')}}" alt=""/>
+    @else
+        <img class="game-details-main-img" src="{{asset('no_image.jpg')}}" alt=""/>
     @endif
     <label for="file">File</label>
     <input name="image" type="file"/>

@@ -11,6 +11,10 @@ class GameComment extends Model
 
     protected $fillable = ['user_id', 'game_id', 'parent_id', 'body'];
 
+    protected $casts = [
+        'updated_at' => 'datetime',
+    ];
+
     public function user()
     {
         return $this->belongsTo(User::class);

@@ -22,7 +22,7 @@
         </select>
         <!-- Hidden input to store selected options -->
         <input type="hidden" id="selectedTags" name="selected_tags"
-               value="@foreach($game->tags as $tag){{$tag->id}} @endforeach">
+               @if($game != null and $game->tags !=null)value="@foreach($game->tags as $tag){{$tag->id}} @endforeach"@endif>
         <!-- Display added options -->
         <div id="addedTags" class="hstack f-wrap">
         </div>

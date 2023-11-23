@@ -13,6 +13,9 @@
                           href="{{route('users.show', ['id' => $comment->user->id])}}">
                         <strong>{{ $comment->user->name }}</strong>
                     </a>
+                    <time class="comment-time">
+                        {{$comment->updated_at->formatLocalized('%B %e, %Y')}}
+                    </time>
                 </div>
             </div>
             <x-game-comments :comments="$comment->replies" :game_id="$game_id" :parent_id="$comment->id"

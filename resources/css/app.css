@@ -252,3 +252,9 @@ textarea {
 .gap-0 {
     gap: 0;
 }
+
+.comment-time {
+    font-size: 14px;
+    color: var(--color-text-shadow);
+    float: right;
+}

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Game;
 use App\Models\Tag;
+use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 
 class GameController extends Controller
@@ -136,6 +137,13 @@ class GameController extends Controller
     {
         $game->delete();
 
-        return response()->json(null, 204);
+        if ($this::API) {
+            return response()->json(null, 204);
+        }
+
+        session()->flash('success_notification', "Game '{$game->title}' deleted.");
+
+        return redirect(RouteServiceProvider::HOME);
+
     }
 }

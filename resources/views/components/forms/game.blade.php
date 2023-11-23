@@ -73,4 +73,35 @@
             @endif
         </button>
     </div>
+
 </form>
+
+@if($game != null)
+    <div class="mt-def-l">
+        <h3 class="">{{__("Danger zone")}}</h3>
+        <div>
+            <button data-modal-open="game-delete">{{__("Delete game")}}</button>
+        </div>
+
+        <dialog class="card login-modal p-def common-modal" id="game-delete">
+            <div class="f-jc-end">
+                <button data-modal-close="game-delete"
+                        class="closeModalButton stealth font-icon-button p-0 f-ai-center f-jc-center">&times
+                </button>
+            </div>
+            <div class="vstack f-ai-center p-def">
+                <div class="vstack w-100">
+                    <h3 class="p-0">{{__("Want to delete the game, ")}} {{ $game->title }}?</h3>
+                    <br/>
+                    <form class="f-ai-center v-stack" action="{{ route('games.destroy', ['game' => $game]) }}"
+                          method="post">
+                        @csrf
+                        <button class="pointer w-100" type="submit">{{__("Continue deletion")}}</button>
+                    </form>
+                </div>
+            </div>
+            <br/>
+        </dialog>
+
+    </div>
+@endif

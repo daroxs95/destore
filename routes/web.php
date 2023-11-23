@@ -38,6 +38,9 @@ Route::post('games', [GameController::class, 'store'])
 Route::post('games/{game:slug}', [GameController::class, 'update'])
     ->middleware(['auth', 'verified'])
     ->name('games.update');
+Route::post('games/{game:slug}/delete', [GameController::class, 'destroy'])
+    ->middleware(['auth', 'verified'])
+    ->name('games.destroy');
 
 Route::get('games/create/new', [GameController::class, 'create'])
     ->middleware(['auth', 'verified'])

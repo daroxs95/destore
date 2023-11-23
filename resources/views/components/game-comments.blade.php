@@ -5,7 +5,7 @@
         @foreach($comments->filter(fn ($c) => $parent_id != null ? $c->parent_id == $parent_id : $c->parent_id == null) as $comment)
             <div class="hstack f-ai-center">
                 @if($parent_id)
-                    <img widht="40" height="40" src="{{asset('reply_arrow.svg')}}">
+                    <img alt="" width="40" height="40" src="{{asset('reply_arrow.svg')}}">
                 @endif
                 <div class="card p-def comment-card">
                     <p>{{ $comment->body }}</p>
@@ -22,7 +22,7 @@
                              :level="$level + 1"/>
             @if (($parent_id == null) and $level <= 1)
                 <div class="hstack reply-comment-form-container">
-                    <img widht="40" height="40" src="{{asset('reply_arrow.svg')}}">
+                    <img alt="" widht="40" height="40" src="{{asset('reply_arrow.svg')}}">
                     <form class="vstack" method="post" action="{{ route('games.comments.store') }}">
                         @csrf
                         <textarea type="text" name="body" required placeholder="" class=""></textarea>

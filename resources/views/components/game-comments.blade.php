@@ -18,7 +18,7 @@
             <x-game-comments :comments="$comment->replies" :game_id="$game_id" :parent_id="$comment->id"
                              :level="$level + 1"/>
             @if (($parent_id == null) and $level <= 1)
-                <div class="hstack">
+                <div class="hstack reply-comment-form-container">
                     <img widht="40" height="40" src="{{asset('reply_arrow.svg')}}">
                     <form class="vstack" method="post" action="{{ route('games.comments.store') }}">
                         @csrf

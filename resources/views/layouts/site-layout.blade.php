@@ -21,26 +21,12 @@
 
 <dialog class="card login-modal p-def" id="loginModal">
     <div class="f-jc-end">
-        <button class="stealth font-icon-button p-0 f-ai-center f-jc-center" id="closeModalButton">&times</button>
+        <button data-modal-close="loginModal" class="stealth font-icon-button p-0 f-ai-center f-jc-center" id="closeModalButton">&times</button>
     </div>
     <x-forms.login/>
 </dialog>
 
 </body>
-
-<script>
-    const openModalButton = document.getElementById('openModalButton');
-    const closeModalButton = document.getElementById('closeModalButton');
-    const loginModal = document.getElementById('loginModal');
-
-    openModalButton.addEventListener('click', () => {
-        loginModal.showModal();
-    });
-
-    closeModalButton.addEventListener('click', () => {
-        loginModal.close();
-    });
-</script>
 
 <style>
     header {

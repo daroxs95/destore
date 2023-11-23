@@ -33,7 +33,7 @@
         </div>
         <div class="f-ai-center">
             @guest
-                {{--                <button id="openModalButton" class="outline">{{__("Login")}}</button>--}}
+{{--                <button data-modal-open="loginModal" class="outline">{{__("Login")}}</button>--}}
                 <a href="{{route('login')}}" class="button outline">{{__("Login")}}</a>
             @endguest
             @auth

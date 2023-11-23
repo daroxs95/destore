@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\GameController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -27,5 +28,9 @@ Route::get('games', [GameController::class, 'index'])
     ->name('games.index');
 Route::get('games/{game:slug}', [GameController::class, 'show'])
     ->name('games.show');
+
+Route::post('/profile', [ProfileController::class, 'destroy'])
+    ->middleware(['auth', 'verified'])
+    ->name('profile.destroy');
 
 require __DIR__.'/auth.php';

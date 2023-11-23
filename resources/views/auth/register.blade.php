@@ -1,6 +1,7 @@
 <x-guest-layout>
     <x-auth-session-status class="" :status="session('status')"/>
 
+    <br />
     <div class="card p-def login-page_login-card">
         <form class="vstack login-form" method="POST" action="{{ route('register') }}">
             @csrf
@@ -8,14 +9,14 @@
             <h3>{{__("Register")}}</h3>
             <div class="vstack">
                 <label for="name" class="">{{__('Name')}}</label>
-                <input type="text" id="name" name="name" class="" :value="old('name')" required autofocus
+                <input type="text" id="name" name="name" class="" value="{{old('name')}}" required autofocus
                        autocomplete="name">
                 <x-input-error :messages="$errors->get('name')" class=""/>
             </div>
 
             <div class="vstack">
                 <label for="email" class="">{{__('Email')}}</label>
-                <input type="email" id="email" name="email" class="" :value="old('email')" required autofocus
+                <input type="email" id="email" name="email" class="" value="{{old('email')}}" required autofocus
                        autocomplete="email">
                 <x-input-error :messages="$errors->get('email')" class=""/>
             </div>

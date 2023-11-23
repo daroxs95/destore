@@ -30,6 +30,7 @@
     <button type="submit" class="">
         {{ __('Log in') }}
     </button>
+
     <div class="f-jc-center">
         <a class="button stealth" href="{{ route('register') }}">
             {{ __('or register') }}

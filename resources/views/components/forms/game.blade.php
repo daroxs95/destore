@@ -33,7 +33,7 @@
 
     <div class="vstack">
         <label for="title" class="">{{__("Title")}}</label>
-        <input id="title" type="text" name="title" value="{{$game != null ? $game->title : ""}}" placeholder="">
+        <input id="title" type="text" name="title" value="{{$game != null ? $game->title : ""}}" placeholder="" required>
     </div>
 
     <br/>

@@ -13,6 +13,7 @@
         "laravel/framework": "^10.10",
         "laravel/sanctum": "^3.3",
         "laravel/tinker": "^2.8",
+        "spatie/laravel-ignition": "^2.4",
         "spatie/laravel-medialibrary": "^10.15",
         "spatie/laravel-ray": "^1.33",
         "symfony/http-client": "^6.3",
@@ -28,8 +29,7 @@
         "nunomaduro/collision": "^7.0",
         "pestphp/pest": "^2.0",
         "pestphp/pest-plugin-laravel": "^2.0",
-        "roave/security-advisories": "dev-latest",
-        "spatie/laravel-ignition": "^2.0"
+        "roave/security-advisories": "dev-latest"
     },
     "autoload": {
         "psr-4": {

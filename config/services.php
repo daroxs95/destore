@@ -31,4 +31,8 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'profanityfilter' => [
+        'endpoint' => 'https://api.api-ninjas.com/v1/profanityfilter',
+        'api_key' => env('API_NINJAS_KEY'),
+    ]
 ];

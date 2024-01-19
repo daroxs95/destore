@@ -6,6 +6,7 @@ use App\Models\Game;
 use App\Models\Tag;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
+use App\Services\ProfanityFilter;
 
 class GameController extends Controller
 {
@@ -37,11 +38,12 @@ class GameController extends Controller
     public function store(Request $request)
     {
         $current_user = $request->user();
+        $profanityFilter = new ProfanityFilter();
 
         // Create the game
         $game = Game::create([
-            'title' => $request->input('title'),
-            'description' => $request->input('description'),
+            'title' => $profanityFilter->filter($request->input('title')),
+            'description' => $profanityFilter->filter($request->input('description')),
             'release_date' => $request->input('released') != null ? now() : null,
             'creator_id' => $current_user->id,
             'download_url' => $request->input('download_url'),
@@ -96,10 +98,12 @@ class GameController extends Controller
     public function update(Request $request, Game $game)
     {
 
+        $profanityFilter = new ProfanityFilter();
+
         // Associate tags with the game
         $game->update([
-            'title' => $request->input('title'),
-            'description' => $request->input('description'),
+            'title' => $profanityFilter->filter($request->input('title')),
+            'description' => $profanityFilter->filter($request->input('description')),
             'release_date' => $request->input('published') != null ? now() : null,
             'download_url' => $request->input('download_url'),
         ]);

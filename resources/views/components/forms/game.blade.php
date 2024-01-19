@@ -15,7 +15,7 @@
     <div class="vstack">
         <label for="tagsSelect" class="">{{__("Tags")}}</label>
         <select id="tagsSelect">
-            <option value="">Select an tag to add</option>
+            <option value="">Select a tag to add</option>
             @foreach($tags as $tag)
                 <option value="{{$tag->id}}" title="{{$tag->description}}">{{$tag->name}} </option>
             @endforeach

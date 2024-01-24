@@ -39,7 +39,7 @@ class GameFactory extends Factory
     public function configure()
     {
         return $this->afterCreating(function (Game $post) {
-            $url = 'https://source.unsplash.com/random/1200x800';
+            $url = 'https://loremflickr.com/1200/800';
             $post
                 ->addMediaFromUrl($url)
                 ->toMediaCollection();

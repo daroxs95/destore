@@ -1,0 +1,41 @@
+### GET games
+GET {{base_url}}/api/games?page=2&per_page=10
+Accept: application/json
+Authorization: Bearer {{auth_token}}
+
+### GET game
+GET {{base_url}}/api/games/game-name
+Accept: application/json
+Authorization: Bearer {{auth_token}}
+
+### POST game
+POST {{base_url}}/api/games
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer {{auth_token}}
+
+{
+  "title": "Game name",
+  "description": "Game description",
+  "released": true,
+  "download_url": "https://www.google.com",
+  "tags": [1, 2]
+}
+
+### PUT game
+PUT {{base_url}}/api/games/game-name
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer {{auth_token}}
+
+{
+    "title": "Game name",
+    "description": "Game description",
+    "tags": [1, 2],
+    "released": true
+}
+
+### DELETE game
+DELETE {{base_url}}/api/games/game-name
+Accept: application/json
+Authorization: Bearer {{auth_token}}

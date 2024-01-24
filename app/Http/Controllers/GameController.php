@@ -10,8 +10,6 @@ use App\Services\ProfanityFilter;
 
 class GameController extends Controller
 {
-    const API = false;
-
     // Retrieve all games
     public function index()
     {
@@ -26,10 +24,6 @@ class GameController extends Controller
             ->isReleased()
             ->orderBy('release_date', 'desc')
             ->get();
-
-        if ($this::API) {
-            return response()->json($games);
-        }
 
         return view('games.index', ['games' => $games]);
     }
@@ -58,11 +52,6 @@ class GameController extends Controller
 
         session()->flash('success_notification', "Game '{$game->title}' created.");
 
-        // Return a response (e.g., success message or redirect)
-        if ($request->expectsJson()) {
-            return response()->json($game, 201);
-        }
-
         return redirect()->route('games.manage', $game);
     }
 
@@ -76,19 +65,11 @@ class GameController extends Controller
     // Retrieve a specific game
     public function show(Game $game)
     {
-        if ($this::API) {
-            return response()->json($game);
-        }
-
         return view('games.show', ['game' => $game]);
     }
 
     public function manage(Game $game)
     {
-        if ($this::API) {
-            return response()->json($game);
-        }
-
         $tags = Tag::all();
 
         return view('games.manage', ['game' => $game, 'tags' => $tags]);
@@ -118,11 +99,6 @@ class GameController extends Controller
 
         session()->flash('success_notification', "Game '{$game->title}' updated.");
 
-        // Return a response (e.g., success message or redirect)
-        if ($request->expectsJson()) {
-            return response()->json($game);
-        }
-
         return redirect()->route('games.manage', $game);
     }
 
@@ -130,10 +106,6 @@ class GameController extends Controller
     public function destroy(Game $game)
     {
         $game->delete();
-
-        if ($this::API) {
-            return response()->json(null, 204);
-        }
 
         session()->flash('success_notification', "Game '{$game->title}' deleted.");
 

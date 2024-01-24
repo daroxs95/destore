@@ -3,12 +3,12 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\GameApiRequest;
 use App\Http\Resources\GameResource;
 use App\Models\Game;
 use App\Services\ProfanityFilter;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use App\Http\Requests\GameApiRequest;
 
 class GameController extends Controller
 {

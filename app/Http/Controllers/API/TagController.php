@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\TagApiRequest;
 use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use App\Http\Requests\TagApiRequest;
 
 class TagController extends Controller
 {

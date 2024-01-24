@@ -38,4 +38,3 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::delete('games/{game:slug}', [GameController::class, 'destroy'])
         ->name('api.games.destroy');
 });
-

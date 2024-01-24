@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Game;
 use App\Models\Tag;
 use App\Providers\RouteServiceProvider;
-use Illuminate\Http\Request;
 use App\Services\ProfanityFilter;
+use Illuminate\Http\Request;
 
 class GameController extends Controller
 {

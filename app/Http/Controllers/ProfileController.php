@@ -41,10 +41,10 @@ class ProfileController extends Controller
     public function pat(Request $request)
     {
         $request->user()->tokens()->delete();
-        $token = $request->user()->createToken("DestorePAT");
+        $token = $request->user()->createToken('DestorePAT');
 
         $request->user()->notify(new PATCreation($token->plainTextToken));
-        session()->flash('success_notification', "Your new PAT token have been sent to your email.");
+        session()->flash('success_notification', 'Your new PAT token have been sent to your email.');
 
         return back();
     }

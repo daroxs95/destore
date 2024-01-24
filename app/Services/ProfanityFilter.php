@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Http;
 class ProfanityFilter
 {
     private string $endpoint;
+
     private string $api_key;
 
     public function __construct()
@@ -19,7 +20,7 @@ class ProfanityFilter
     {
         try {
             $response = Http::acceptJson()
-                ->withHeaders(["X-Api-Key" => $this->api_key])
+                ->withHeaders(['X-Api-Key' => $this->api_key])
                 ->get($this->endpoint, [
                     'text' => $text,
                 ]);

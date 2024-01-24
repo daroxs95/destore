@@ -57,4 +57,8 @@ Route::post('/profile', [ProfileController::class, 'destroy'])
     ->middleware(['auth', 'verified'])
     ->name('profile.destroy');
 
+Route::post('/profile/pat', [ProfileController::class, 'pat'])
+    ->middleware(['auth', 'verified'])
+    ->name('profile.pat');
+
 require __DIR__.'/auth.php';

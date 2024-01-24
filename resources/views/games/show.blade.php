@@ -20,7 +20,7 @@
             @endif
         </div>
         @auth
-            @if( auth()->user()->is_admin or auth()->user()->id ==  $game->creator->id)
+            @if( auth()->user()->is_admin or auth()->user()->id == $game->creator->id)
                 <br/>
                 <a class="" href="{{route('games.manage', ['game' => $game])}}">
                     <button class="pointer">

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Notifications\PATCreation;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -35,5 +36,16 @@ class ProfileController extends Controller
         }
 
         return back()->withErrors(['user_id' => 'You are either not admin nor the owner of the account to delete']);
+    }
+
+    public function pat(Request $request)
+    {
+        $request->user()->tokens()->delete();
+        $token = $request->user()->createToken("DestorePAT");
+
+        $request->user()->notify(new PATCreation($token->plainTextToken));
+        session()->flash('success_notification', "Your new PAT token have been sent to your email.");
+
+        return back();
     }
 }

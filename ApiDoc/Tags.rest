@@ -1,0 +1,32 @@
+### GET tags
+GET http://destore.test/api/tags?page=2&per_page=2
+Accept: application/json
+
+### GET tag
+GET http://destore.test/api/tags/20
+Accept: application/json
+
+### POST tag
+POST http://destore.test/api/tags
+Accept: application/json
+Content-Type: application/json
+
+{
+  "name": "tag ok",
+  "description": "tag description"
+}
+
+### PUT tag
+PUT http://destore.test/api/tags/21
+Accept: application/json
+Content-Type: application/json
+
+{
+  "name": "tag ok 2",
+  "description": "tag description 2"
+}
+
+### DELETE tag
+DELETE http://destore.test/api/tags/20
+Accept: application/json
+

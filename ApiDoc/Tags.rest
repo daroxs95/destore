@@ -1,15 +1,18 @@
 ### GET tags
-GET http://destore.test/api/tags?page=2&per_page=2
+GET {{base_url}}/api/tags?page=2&per_page=2
 Accept: application/json
+Authorization: Bearer {{auth_token}}
 
 ### GET tag
-GET http://destore.test/api/tags/20
+GET {{base_url}}/api/tags/20
 Accept: application/json
+Authorization: Bearer {{auth_token}}
 
 ### POST tag
-POST http://destore.test/api/tags
+POST {{base_url}}/api/tags
 Accept: application/json
 Content-Type: application/json
+Authorization: Bearer {{auth_token}}
 
 {
   "name": "tag ok",
@@ -17,9 +20,10 @@ Content-Type: application/json
 }
 
 ### PUT tag
-PUT http://destore.test/api/tags/21
+PUT {{base_url}}/api/tags/21
 Accept: application/json
 Content-Type: application/json
+Authorization: Bearer {{auth_token}}
 
 {
   "name": "tag ok 2",
@@ -27,6 +31,6 @@ Content-Type: application/json
 }
 
 ### DELETE tag
-DELETE http://destore.test/api/tags/20
+DELETE {{base_url}}/api/tags/20
 Accept: application/json
-
+Authorization: Bearer {{auth_token}}

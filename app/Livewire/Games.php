@@ -25,7 +25,7 @@ class Games extends Component
                 ->get();
 
             return view('livewire.games', [
-                'games' => $games
+                'games' => $games,
             ]);
         }
 
@@ -38,12 +38,12 @@ class Games extends Component
                 'media',
             ])
             ->isReleased()
-            ->where('title', 'like', '%' . $this->search . '%')
+            ->where('title', 'like', '%'.$this->search.'%')
             ->orderBy('release_date', 'desc')
             ->get();
 
         return view('livewire.games', [
-            'games' => $games
+            'games' => $games,
         ]);
     }
 }

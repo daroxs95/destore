@@ -71,7 +71,12 @@ class Game extends Model implements HasMedia
     public function createUniqueSlug()
     {
         $slug = Str::slug($this->title);
-        $slugsCount = Game::whereRaw("slug REGEXP '^{$slug}_[0-9]+$'")->orWhere('slug', $slug)->count();
+        $slugsCount = 0;
+        try {
+            $slugsCount = Game::whereRaw("slug REGEXP '^{$slug}_[0-9]+$'")->orWhere('slug', $slug)->count();
+        } catch (\Exception $e) {
+            // Do nothing
+        }
 
         return $slugsCount == 0 ? $slug : $slug.'_'.$slugsCount;
     }

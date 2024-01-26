@@ -72,8 +72,14 @@ class GameController extends Controller
     }
 
     // Delete a tag
-    public function destroy(Game $game)
+    public function destroy(GameApiRequest $request, Game $game)
     {
+        $user = $request->user();
+
+        if (!$user->is_admin && $user->id != $game->creator_id) {
+            abort(403);
+        }
+
         $game->delete();
 
         return response()->json([], Response::HTTP_NO_CONTENT);

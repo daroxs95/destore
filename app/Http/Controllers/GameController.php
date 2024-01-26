@@ -103,14 +103,19 @@ class GameController extends Controller
     }
 
     // Delete a game
-    public function destroy(Game $game)
+    public function destroy(Request $request, Game $game)
     {
+        $user = $request->user();
+
+        if (!$user->is_admin && $user->id != $game->creator_id) {
+            abort(403);
+        }
+
         $game->delete();
 
         session()->flash('success_notification', "Game '{$game->title}' deleted.");
 
         return redirect(RouteServiceProvider::HOME);
-
     }
 
     public function genTagsFromRequest(Request $request)
